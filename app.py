@@ -1,4 +1,5 @@
 import os
+import tempfile
 from flask import Flask, redirect, render_template, request, session, url_for
 import pymysql
 import pymysql.cursors
@@ -11,9 +12,12 @@ app.config.from_object(Config)
 
 app.secret_key = Config.SECRET_KEY
 
-# Folder upload
-UPLOAD_FOLDER = "static/uploads"
+# Menggunakan direktori temporary (/tmp) yang diizinkan oleh Vercel Serverless
+UPLOAD_FOLDER = tempfile.gettempdir()
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+# Batasi ukuran file maksimal 4 MB agar tidak memicu error 413 Payload Too Large Vercel
+app.config["MAX_CONTENT_LENGTH"] = 4 * 1024 * 1024
 
 
 # ==================================================
@@ -27,6 +31,17 @@ def get_db():
       database=getattr(Config, "MYSQL_DB", ""),
       port=getattr(Config, "MYSQL_PORT", 3306),
       cursorclass=pymysql.cursors.DictCursor,  # Mengembalikan data dalam bentuk Dictionary
+  )
+
+
+# Handler jika file yang diunggah lebih dari 4 MB
+@app.errorhandler(413)
+def request_entity_too_large(error):
+  return (
+      render_template(
+          "dokumen.html", error="Ukuran file terlalu besar! Maksimal 4 MB."
+      ),
+      413,
   )
 
 
@@ -501,22 +516,45 @@ def pendaftaran():
   )
 
 
+# ==================================================
+# UPLOAD DOKUMEN (SAFE VERCEL SERVERLESS)
+# ==================================================
+
+
 @app.route("/dokumen", methods=["GET", "POST"])
 def dokumen():
   if "login" not in session:
     return redirect("/login")
 
   if request.method == "POST":
+    if "file" not in request.files:
+      return render_template(
+          "dokumen.html", error="Tidak ada file yang dipilih!"
+      )
+
     file = request.files["file"]
 
-    if file.filename != "":
-      nama_file = secure_filename(file.filename)
+    if file.filename == "":
+      return render_template("dokumen.html", error="Pilih file terlebih dahulu!")
 
-      file.save(os.path.join(app.config["UPLOAD_FOLDER"], nama_file))
+    if file:
+      try:
+        nama_file = secure_filename(file.filename)
+        path_simpan = os.path.join(app.config["UPLOAD_FOLDER"], nama_file)
 
-      return render_template("dokumen.html", sukses=True)
+        # Simpan file ke direktori temporary
+        file.save(path_simpan)
+
+        return render_template("dokumen.html", sukses=True)
+      except Exception as e:
+        return render_template("dokumen.html", error=f"Gagal mengunggah: {str(e)}")
 
   return render_template("dokumen.html")
+
+
+# ==================================================
+# LAPORAN
+# ==================================================
 
 
 @app.route("/laporan")
@@ -540,6 +578,11 @@ def laporan():
   db.close()
 
   return render_template("laporan.html", laporan=data)
+
+
+# ==================================================
+# PROFIL
+# ==================================================
 
 
 @app.route("/profil")
