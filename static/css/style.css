@@ -1,0 +1,198 @@
+/* ===========================================
+   GLOBAL
+=========================================== */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F8F7FF;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===========================================
+   NAVBAR
+=========================================== */
+
+.navbar{
+    background: #ffffff !important;
+}
+
+/* ===========================================
+   SIDEBAR
+=========================================== */
+
+.sidebar{
+    background: #6C3BFF;
+    min-height: 100vh;
+}
+
+/* ===========================================
+   CARD
+=========================================== */
+
+.card{
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    transition: .3s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+/* ===========================================
+   BUTTON
+=========================================== */
+
+.btn-primary{
+    background: #FF8A00;
+    border: none;
+}
+
+.btn-primary:hover{
+    background: #E87B00;
+}
+
+/* Tombol Warning */
+
+.btn-warning{
+    background: #FF8A00;
+    border: none;
+    color: white;
+}
+
+.btn-warning:hover{
+    background: #ff9800;
+    color: white;
+}
+
+/* ===========================================
+   HERO SECTION
+=========================================== */
+
+.hero{
+    padding: 80px 0;
+}
+
+.text-purple{
+    color:#6C3BFF;
+}
+
+/* ===========================================
+   LOGIN PAGE
+=========================================== */
+
+.login-page{
+
+    background: linear-gradient(
+        135deg,
+        #6C3BFF,
+        #8F6BFF,
+        #F8F7FF
+    );
+
+    min-height:100vh;
+}
+
+.login-page h1,
+.login-page h3,
+.login-page p{
+
+    color:white;
+
+}
+
+.login-page .card{
+
+    border-radius:25px;
+
+}
+
+.form-control{
+
+    height:50px;
+    border-radius:12px;
+
+}
+
+.input-group .btn{
+
+    border-radius:12px;
+
+}
+
+/* ===========================================
+   SEARCH
+=========================================== */
+
+.input-group{
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.input-group input{
+
+    border:none;
+
+}
+
+.input-group .btn{
+
+    border:none;
+
+}
+
+/* ===========================================
+   FOOTER
+=========================================== */
+
+footer{
+
+    background:#6C3BFF;
+    color:white;
+
+}
+
+/* ================= Dashboard ================= */
+
+.sidebar{
+    width:250px;
+    min-height:100vh;
+    background:#6C3BFF;
+}
+
+.menu-item{
+
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+
+}
+
+.menu-item:hover{
+
+    background:rgba(255,255,255,.2);
+
+}
+
+.content{
+
+    background:#F8F7FF;
+    min-height:100vh;
+
+}
+
+.dashboard-card{
+
+    padding:25px;
+    text-align:center;
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}

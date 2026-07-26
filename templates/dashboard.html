@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex">
+
+{% include 'sidebar.html' %}
+
+<div class="content flex-grow-1">
+
+{% include 'navbar.html' %}
+
+<div class="container mt-4">
+
+<h2>
+
+Selamat Datang 👋
+
+</h2>
+
+<p>
+
+Semoga harimu menyenangkan.
+
+</p>
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <div class="card dashboard-card">
+
+            <h5>Total Beasiswa</h5>
+
+            <h2>{{ total_beasiswa }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card dashboard-card">
+
+            <h5>Total Pengguna</h5>
+
+            <h2>{{ total_user }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card dashboard-card">
+
+            <h5>Total Pendaftaran</h5>
+
+            <h2>{{ total_daftar }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card dashboard-card">
+
+            <h5>Login Aktif</h5>
+
+            <h2>{{ nama }}</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

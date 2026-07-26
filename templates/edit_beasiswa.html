@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Beasiswa
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex">
+
+{% include "sidebar.html" %}
+
+<div class="content flex-grow-1">
+
+{% include "navbar.html" %}
+
+<div class="container mt-4">
+
+<div class="card shadow p-4">
+
+<h3 class="mb-4">
+Edit Data Beasiswa
+</h3>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Nama Beasiswa</label>
+
+<input
+type="text"
+name="nama_beasiswa"
+class="form-control"
+value="{{ data.NAMA_BEASISWA }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Penyelenggara</label>
+
+<input
+type="text"
+name="penyelenggara"
+class="form-control"
+value="{{ data.PENYELENGGARA }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Kuota</label>
+
+<input
+type="number"
+name="kuota"
+class="form-control"
+value="{{ data.KUOTA }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Deadline</label>
+
+<input
+type="date"
+name="deadline"
+class="form-control"
+value="{{ data.DEADLINE }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Deskripsi</label>
+
+<textarea
+name="deskripsi"
+class="form-control"
+rows="5">{{ data.DESKRIPSI }}</textarea>
+
+</div>
+
+<button class="btn btn-success">
+
+Simpan Perubahan
+
+</button>
+
+<a href="/beasiswa" class="btn btn-secondary">
+
+Batal
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

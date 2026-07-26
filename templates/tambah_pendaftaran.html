@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tambah Pendaftaran
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex">
+
+{% include "sidebar.html" %}
+
+<div class="content flex-grow-1">
+
+{% include "navbar.html" %}
+
+<div class="container mt-4">
+
+<div class="card shadow p-4">
+
+<h3>Tambah Pendaftaran</h3>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Beasiswa</label>
+
+<select name="id_beasiswa" class="form-select">
+
+{% for b in beasiswa %}
+
+<option value="{{ b.ID }}">
+{{ b.NAMA_BEASISWA }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Tanggal Daftar</label>
+
+<input
+type="date"
+name="tanggal"
+class="form-control"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Status</label>
+
+<select
+name="status"
+class="form-select">
+
+<option>Menunggu</option>
+<option>Diterima</option>
+<option>Ditolak</option>
+
+</select>
+
+</div>
+
+<button class="btn btn-success">
+Simpan
+</button>
+
+<a href="/pendaftaran" class="btn btn-secondary">
+Batal
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

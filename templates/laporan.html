@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex">
+
+{% include "sidebar.html" %}
+
+<div class="content flex-grow-1">
+
+{% include "navbar.html" %}
+
+<div class="container mt-4">
+
+<div class="card shadow p-4">
+
+<h3>Laporan Pendaftaran</h3>
+
+<table class="table">
+
+<tr>
+
+<th>Status</th>
+
+<th>Total</th>
+
+</tr>
+
+{% for item in laporan %}
+
+<tr>
+
+<td>{{ item.STATUS }}</td>
+
+<td>{{ item.jumlah }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

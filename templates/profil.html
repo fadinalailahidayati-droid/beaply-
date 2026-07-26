@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profil
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex">
+
+{% include "sidebar.html" %}
+
+<div class="content flex-grow-1">
+
+{% include "navbar.html" %}
+
+<div class="container mt-4">
+
+<div class="card shadow p-4">
+
+<h3>Profil Saya</h3>
+
+<hr>
+
+<p><b>Nama</b> : {{ user.NAMA }}</p>
+
+<p><b>NIM</b> : {{ user.NIM }}</p>
+
+<p><b>Program Studi</b> : {{ user.PRODI }}</p>
+
+<p><b>Email</b> : {{ user.EMAIL }}</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
